@@ -9,6 +9,8 @@ from .models import User, db
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config["SECRET_KEY"] = os.environ.get("PORTAL_SECRET", "dev-only-change-me")
+    app.config["SESSION_COOKIE_HTTPONLY"] = True
+    app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
         app.instance_path, "portal.db")
     if os.environ.get("PORTAL_DB"):  # tooling hook: an explicit SQLite file path
@@ -36,6 +38,9 @@ def create_app(test_config=None):
     @app.get("/robots.txt")
     def robots():
         return Response("User-agent: *\nDisallow: /registrar-x9k2\n", mimetype="text/plain")
+
+    from . import policy
+    policy.install(app)
 
     with app.app_context():
         db.create_all()

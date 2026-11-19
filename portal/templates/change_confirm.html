@@ -6,6 +6,7 @@
 <form method="post" action="/submissions/{{ sub.id }}/change/confirm">
   <input type="hidden" name="grade" value="{{ grade }}">
   <input type="hidden" name="confirmed" value="true">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <button type="submit">Confirm</button>
 </form>
 {% endblock %}

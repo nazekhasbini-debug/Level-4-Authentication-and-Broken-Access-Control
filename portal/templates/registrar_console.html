@@ -8,12 +8,14 @@
 </table>
 <h2>Set role</h2>
 <form method="post" action="/registrar-x9k2/role">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <input name="username" placeholder="username">
   <input name="role" placeholder="role">
   <button type="submit">Set role</button>
 </form>
 <h2>Enroll</h2>
 <form method="post" action="/registrar-x9k2/enroll">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <input name="username" placeholder="username">
   <input name="course_id" placeholder="course id">
   <button type="submit">Enroll</button>

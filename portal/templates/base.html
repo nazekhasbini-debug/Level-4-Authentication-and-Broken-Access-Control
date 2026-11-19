@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Course Portal{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% if session.csrf_token %}<meta name="csrf-token" content="{{ session.csrf_token }}">{% endif %}
 </head>
 <body>
   <header>

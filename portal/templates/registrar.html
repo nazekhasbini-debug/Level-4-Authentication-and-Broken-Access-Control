@@ -5,6 +5,7 @@
 <h2>Add a TA</h2>
 {% for c in courses %}
 <form method="post" action="/courses/{{ c.id }}/staff/add">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <label>{{ c.code }}: <input name="username" placeholder="username"></label>
   <button type="submit">Add a TA</button>
 </form>

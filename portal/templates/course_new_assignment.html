@@ -3,6 +3,7 @@
 {% block content %}
 <h1>New assignment</h1>
 <form method="post" action="/staff/assignments/new">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <input name="course_id" placeholder="course id">
   <input name="title" placeholder="title">
   <input name="deadline" placeholder="2026-12-31T23:59">
